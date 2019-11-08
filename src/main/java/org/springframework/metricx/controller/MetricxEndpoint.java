@@ -1,4 +1,4 @@
-package org.springframework.metrix.controller;
+package org.springframework.metricx.controller;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
