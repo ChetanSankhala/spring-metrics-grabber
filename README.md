@@ -30,3 +30,12 @@ public class YourSpringBootApplication {
 
 * Pattern search is also supported
 e.g. '/metricx/jvm.*'
+
+#### Configuration
+
+* <b>'metricx.exposure.prefix'</b> :
+Default empty so it will publish all metrics.<br />
+if configured, only those metrics will be published which has matches configured prefix.
+
+<b>Example</b>: metricx.exposure.prefix=counter, <br />
+only those metrics will be published which are starting with 'counter'
