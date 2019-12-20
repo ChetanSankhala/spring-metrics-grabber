@@ -14,7 +14,7 @@ public class MetricxConfig {
 
     /**
      * IF exposurePrefix is configured 'counter' THEN
-     *      '/metricx' endpoint will publish metrics starting with 'counter only'
+     *      '/metricx' endpoint will publish metrics starting with 'counter' only
      * Default: empty, means publish all
      */
     @NonNull

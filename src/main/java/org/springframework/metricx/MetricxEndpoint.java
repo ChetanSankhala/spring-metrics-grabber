@@ -1,9 +1,7 @@
 package org.springframework.metricx;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
 
 import org.springframework.http.MediaType;
 import org.springframework.metricx.config.MetricxConfig;
@@ -11,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 @RestController
 public class MetricxEndpoint {
@@ -20,8 +20,7 @@ public class MetricxEndpoint {
     private MeterRegistry registry;
     private MetricxConfig metricxConfig;
 
-    public MetricxEndpoint(MeterRegistry registry,
-                           MetricxConfig metricxConfig) {
+    public MetricxEndpoint(MeterRegistry registry, MetricxConfig metricxConfig) {
         this.registry = registry;
         this.metricxConfig = metricxConfig;
     }
@@ -29,8 +28,9 @@ public class MetricxEndpoint {
     @GetMapping(value = "/metricx", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Double> metricx() {
         Map<String, Double> matricKeyValue = new LinkedHashMap<>();
-        collectMetrics(matricKeyValue, this.registry,
-                metricName -> metricName.startsWith(metricxConfig.getExposurePrefix()));
+
+        collectMetrics(matricKeyValue, this.registry, metricName -> metricName.startsWith(metricxConfig.getExposurePrefix()));
+
         return matricKeyValue;
     }
 
